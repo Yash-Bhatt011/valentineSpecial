@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine?</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: pink;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+        .container {
+            margin-top: 100px;
+        }
+        .question {
+            font-size: 24px;
+            font-weight: bold;
+            animation: shake 0.5s infinite alternate;
+        }
+        .buttons {
+            margin-top: 20px;
+            position: relative;
+        }
+        button {
+            font-size: 18px;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+        }
+        .yes {
+            background-color: red;
+            color: white;
+            transition: transform 0.2s;
+        }
+        .yes:hover {
+            transform: scale(1.5) rotate(10deg);
+        }
+        .no {
+            background-color: gray;
+            color: white;
+            position: absolute;
+        }
+        .hidden {
+            display: none;
+        }
+        .hearts {
+            font-size: 50px;
+            color: red;
+            animation: float 2s infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
+        }
+        .rainbow-text {
+            font-size: 24px;
+            font-weight: bold;
+            animation: rainbow 0.5s infinite alternate;
+        }
+        @keyframes rainbow {
+            0% { color: red; }
+            25% { color: orange; }
+            50% { color: yellow; }
+            75% { color: green; }
+            100% { color: blue; }
+        }
+        @keyframes shake {
+            0% { transform: rotate(-3deg); }
+            100% { transform: rotate(3deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p class="question rainbow-text">Will you be my Valentine? 💖</p>
+        <div class="buttons">
+            <button class="yes" onclick="showLove()">Yes</button>
+            <button class="no" id="noButton">No</button>
+        </div>
+        <div id="animation" class="hidden"></div>
+    </div>
+
+    <script>
+        function showLove() {
+            document.getElementById('animation').innerHTML = "❤️❤️❤️ Yay! I love you! ❤️❤️❤️";
+            document.getElementById('animation').className = "hearts";
+            document.body.style.backgroundColor = "#ffccff";
+            alert("You have made the BEST decision of your life! 🎉🥰");
+            setInterval(() => {
+                document.body.style.backgroundColor = `rgb(${Math.random()*255}, ${Math.random()*255}, ${Math.random()*255})`;
+            }, 500);
+        }
+
+        document.getElementById("noButton").addEventListener("mouseover", function() {
+            let x = Math.random() * (window.innerWidth - 100);
+            let y = Math.random() * (window.innerHeight - 50);
+            this.style.left = `${x}px`;
+            this.style.top = `${y}px`;
+            this.innerHTML = "Yes"; // Change "No" to "Yes" while hovering
+        });
+
+        document.getElementById("noButton").addEventListener("click", function() {
+            alert("Nice try! But you can’t say no! 😜");
+            let confetti = document.createElement("div");
+            confetti.innerHTML = "🎉🎊💖";
+            confetti.style.fontSize = "50px";
+            confetti.style.position = "absolute";
+            confetti.style.left = Math.random() * window.innerWidth + "px";
+            confetti.style.top = Math.random() * window.innerHeight + "px";
+            document.body.appendChild(confetti);
+        });
+    </script>
+</body>
+</html>
